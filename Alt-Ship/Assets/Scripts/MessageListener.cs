@@ -8,6 +8,7 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Net.Configuration;
 
 /**
  * When creating your message listeners you need to implement these two methods:
@@ -15,7 +16,7 @@ using System.Collections;
  *  - OnConnectionEvent
  */
 
-    
+
 
 public class MessageListener : MonoBehaviour
 {
@@ -27,16 +28,25 @@ public class MessageListener : MonoBehaviour
     // Invoked when a line of data is received from the serial device.
     void OnMessageArrived(string msg)
     {
-        if (arrivalStep == false)
+        if (msg == new string("On"))
         {
-            X = float.Parse(msg);
-            arrivalStep = true;
+            print("On");
         }
-        else if (arrivalStep == true)
+        else
         {
-            Y = float.Parse(msg);
-            arrivalStep = false;
+            if (arrivalStep == false)
+            {
+                X = float.Parse(msg);
+                arrivalStep = true;
+            }
+            else if (arrivalStep == true)
+            {
+                Y = float.Parse(msg);
+                arrivalStep = false;
+            }
         }
+
+       
         
 
         Debug.Log("Message arrived: " + msg);

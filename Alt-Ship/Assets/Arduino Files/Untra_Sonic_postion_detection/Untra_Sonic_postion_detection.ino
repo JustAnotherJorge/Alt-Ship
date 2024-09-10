@@ -12,14 +12,24 @@ SR04 sensoryX = SR04(ECHO_PINx,TRIG_PINx);
 long x;
 
 
+int buttonApin = 7; 
 
-void setup() {
-   Serial.begin(9600);
-   delay(1000);
+
+
+void setup() {  
+  Serial.begin(9600);
+  delay(1000);
+  
+  pinMode(buttonApin,INPUT_PULLUP);
+   
 }
 
 void loop() {
 
+   if (digitalRead(buttonApin) == LOW){
+    Serial.println("On");
+   }
+   
    x=sensoryX.Distance();
    Serial.print(x);
    Serial.println("");
