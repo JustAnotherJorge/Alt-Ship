@@ -32,13 +32,13 @@ void loop() {
    
    x=sensoryX.Distance();
    Serial.print(x);
-   Serial.println("");
-   delay(25);
+   Serial.println("X");
+   delay(1);
    
    y=sensoryY.Distance();
    Serial.print(y);
-   Serial.println("");
-   delay(25);
+   Serial.println("Y");
+   delay(1);
 
    
 }

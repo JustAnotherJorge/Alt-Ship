@@ -18,6 +18,8 @@ public class ShipControl : MonoBehaviour
     [SerializeField] private Vector3 furthestPo = new Vector3(16, 9, 0);
     [SerializeField] private Vector3 screenBounds;
 
+    [SerializeField] private float movmentSmoothing = 0.01f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,16 +32,14 @@ public class ShipControl : MonoBehaviour
         
 
         YDistance = MessageListener.GetComponent<MessageListener>().Y;
-        YDistance = YDistance;
 
         XDistance = MessageListener.GetComponent<MessageListener>().X;
-        XDistance = XDistance;
 
         shipPostion = new Vector3 (XDistance, YDistance, shipPostion.z) /*- StartPosition*/;
         shipPostion -= StartPosition;
         shipPostion = shipPostion / 2;
 
-        transform.position = Vector3.Lerp(transform.position, shipPostion, 0.01f);
+        transform.position = Vector3.Lerp(transform.position, shipPostion, movmentSmoothing * Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.Space))
             calabratePosition();

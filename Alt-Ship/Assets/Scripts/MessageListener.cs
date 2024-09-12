@@ -28,28 +28,27 @@ public class MessageListener : MonoBehaviour
     // Invoked when a line of data is received from the serial device.
     void OnMessageArrived(string msg)
     {
+        Debug.Log("Message arrived: " + msg);
+
+        if (msg.IndexOf("X") != -1)
+        {
+            //print("hasX");
+            msg = msg.Remove(msg.Length - 1);
+            X = float.Parse(msg); 
+            print(X);
+        }
+        else if (msg.IndexOf("Y") != -1)
+        {
+            //print("hasY");
+            msg = msg.Remove(msg.Length - 1);
+            Y = float.Parse(msg);
+            print(Y);
+        }
+
         if (msg == new string("On"))
         {
             print("On");
         }
-        else
-        {
-            if (arrivalStep == false)
-            {
-                X = float.Parse(msg);
-                arrivalStep = true;
-            }
-            else if (arrivalStep == true)
-            {
-                Y = float.Parse(msg);
-                arrivalStep = false;
-            }
-        }
-
-       
-        
-
-        Debug.Log("Message arrived: " + msg);
     }
 
     // Invoked when a connect/disconnect event occurs. The parameter 'success'
