@@ -13,7 +13,7 @@ long x;
 
 
 int buttonApin = 7; 
-
+int shootLED = 13;
 
 
 void setup() {  
@@ -21,6 +21,7 @@ void setup() {
   delay(1000);
   
   pinMode(buttonApin,INPUT_PULLUP);
+  pinMode(shootLED, OUTPUT);
    
 }
 
@@ -28,6 +29,9 @@ void loop() {
 
    if (digitalRead(buttonApin) == LOW){
     Serial.println("On");
+    digitalWrite(shootLED, HIGH);
+    delay(100);
+    digitalWrite(shootLED, LOW);
    }
    
    x=sensoryX.Distance();
