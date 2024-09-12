@@ -23,6 +23,8 @@ public class MessageListener : MonoBehaviour
     public float X;
     public float Y;
 
+    public bool doShoot;
+
     bool arrivalStep;
 
     // Invoked when a line of data is received from the serial device.
@@ -47,6 +49,7 @@ public class MessageListener : MonoBehaviour
 
         if (msg == new string("On"))
         {
+            doShoot = true;
             print("On");
         }
     }
