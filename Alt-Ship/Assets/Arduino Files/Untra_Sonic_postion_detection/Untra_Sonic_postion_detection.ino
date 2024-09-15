@@ -27,12 +27,12 @@ void setup() {
 
 void loop() {
 
-   if (digitalRead(buttonApin) == LOW){
-    Serial.println("On");
-    digitalWrite(shootLED, HIGH);
-    delay(100);
-    digitalWrite(shootLED, LOW);
-   }
+//   if (digitalRead(buttonApin) == LOW){
+//    Serial.println("On");
+//    digitalWrite(shootLED, HIGH);
+//    delay(100);
+//    digitalWrite(shootLED, LOW);
+//   }
    
    x=sensoryX.Distance();
    Serial.print(x);

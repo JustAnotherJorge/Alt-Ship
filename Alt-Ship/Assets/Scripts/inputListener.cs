@@ -18,41 +18,26 @@ using System.Net.Configuration;
 
 
 
-public class MessageListener : MonoBehaviour
+public class inputListener : MonoBehaviour
 {
-    public float X;
-    public float Y;
-
     public bool doShoot;
-
-    bool arrivalStep;
 
     // Invoked when a line of data is received from the serial device.
     void OnMessageArrived(string msg)
     {
         Debug.Log("Message arrived: " + msg);
 
-        if (msg.IndexOf("X") != -1)
-        {
-            //print("hasX");
-            msg = msg.Remove(msg.Length - 1);
-            X = float.Parse(msg); 
-            print(X);
-        }
-        else if (msg.IndexOf("Y") != -1)
-        {
-            //print("hasY");
-            msg = msg.Remove(msg.Length - 1);
-            Y = float.Parse(msg);
-            print(Y);
-        }
-
-        if (msg == new string("On"))
+        if (msg == new string("shoot"))
         {
             doShoot = true;
-            print("On");
         }
+        else if (msg == new string("dontShoot"))
+        {
+            doShoot = false;
+        }
+
     }
+
 
     // Invoked when a connect/disconnect event occurs. The parameter 'success'
     // will be 'true' upon connection, and 'false' upon disconnection or
@@ -60,8 +45,10 @@ public class MessageListener : MonoBehaviour
     void OnConnectionEvent(bool success)
     {
         if (success)
-            Debug.Log("Connection established");
+            Debug.Log("Connection 2 established");
         else
-            Debug.Log("Connection attempt failed or disconnection detected");
+            Debug.Log("Connection 2 attempt failed or disconnection detected");
     }
+
+
 }

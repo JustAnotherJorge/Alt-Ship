@@ -11,7 +11,7 @@ public class ShipControl : MonoBehaviour
     [SerializeField] private float YDistance;
     [SerializeField] private float XDistance;
 
-    [SerializeField] private GameObject MessageListener;
+    [SerializeField] private GameObject positionListener;
 
     private int calabrationFase;
 
@@ -31,9 +31,9 @@ public class ShipControl : MonoBehaviour
     {
         
 
-        YDistance = MessageListener.GetComponent<MessageListener>().Y;
+        YDistance = positionListener.GetComponent<positionListener>().Y;
 
-        XDistance = MessageListener.GetComponent<MessageListener>().X;
+        XDistance = positionListener.GetComponent<positionListener>().X;
 
         shipPostion = new Vector3 (XDistance, YDistance, shipPostion.z) /*- StartPosition*/;
         shipPostion -= StartPosition;
