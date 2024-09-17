@@ -6,6 +6,8 @@ int healthLED1 = 5;
 int healthLED2 = 6;
 int healthLED3 = 7;
 
+int damageSound = 2;
+
 void setup() {
 
   Serial.begin(9600);
@@ -17,6 +19,7 @@ void setup() {
   pinMode(healthLED1, OUTPUT);
   pinMode(healthLED2, OUTPUT);
   pinMode(healthLED3, OUTPUT);  
+  pinMode(damageSound, OUTPUT);  
 
   
 }
@@ -24,7 +27,7 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
-  
+  digitalWrite(damageSound, LOW);
   
   if(digitalRead(button1) == LOW)
     {
@@ -50,12 +53,18 @@ void loop() {
 
     if (untiyOutput == '2'){
       digitalWrite(healthLED3, LOW);
+      digitalWrite(damageSound, HIGH);
+
     }
     else if (untiyOutput == '1'){
       digitalWrite(healthLED2, LOW);
+      digitalWrite(damageSound, HIGH);
+
     }
     else if (untiyOutput == '0'){
       digitalWrite(healthLED1, LOW);
+      digitalWrite(damageSound, HIGH);
+      
     }
     else if (untiyOutput == '3'){
       digitalWrite(healthLED1, HIGH);
