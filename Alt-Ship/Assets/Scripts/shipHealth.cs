@@ -24,8 +24,18 @@ public class shipHealth : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("enemy"))
+        {
+            health--;
+            writeDamage();
+        }
+    }
+
     void writeDamage()
     {
+        
         inputController.SendSerialMessage(health.ToString());
     }
 }

@@ -24,7 +24,9 @@ public class shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inputListener.GetComponent<inputListener>().doShoot == true) 
+
+
+        if (inputListener.GetComponent<inputListener>().doShoot == true || Input.GetButton("Fire1")) 
         {
             if (hasShot == false) 
             {

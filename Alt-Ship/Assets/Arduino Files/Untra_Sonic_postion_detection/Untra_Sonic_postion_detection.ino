@@ -12,16 +12,10 @@ SR04 sensoryX = SR04(ECHO_PINx,TRIG_PINx);
 long x;
 
 
-int buttonApin = 7; 
-int shootLED = 13;
-
-
 void setup() {  
   Serial.begin(9600);
   delay(1000);
-  
-  pinMode(buttonApin,INPUT_PULLUP);
-  pinMode(shootLED, OUTPUT);
+ 
    
 }
 
