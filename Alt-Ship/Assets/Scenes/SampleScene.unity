@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 194998795}
   - component: {fileID: 194998792}
   - component: {fileID: 194998797}
-  - component: {fileID: 194998798}
   m_Layer: 6
   m_Name: Ship
   m_TagString: Player
@@ -154,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21589325b59a55641acdc86adc072ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useMousePo: 1
   shipPostion: {x: 0, y: 0, z: 0}
   StartPosition: {x: 0, y: 0, z: 0}
   YDistance: 0
@@ -197,18 +197,6 @@ MonoBehaviour:
   bullet: {fileID: 567334639095431224, guid: d9ae283675b96ea4c8b76a9cb8ab39c4, type: 3}
   shootRate: 0.1
   inputController: {fileID: 0}
---- !u!114 &194998798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194998790}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9102b8e0d3302248a4f7980d197e039, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &269767420
 GameObject:
   m_ObjectHideFlags: 0

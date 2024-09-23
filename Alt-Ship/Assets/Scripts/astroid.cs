@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
+//using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Animations;
 
@@ -8,47 +8,48 @@ public class astroid : MonoBehaviour
 {
     [SerializeField] private float speed = 10;
     [SerializeField] private float vertSpeed = 10;
-    [SerializeField] private float attackSpeed = 0.1f;
-    [SerializeField] private GameObject[] debris;
-    
-    private Transform player;
+    [SerializeField] private GameObject debris;
 
-    private bool targetReached = false;
+    [SerializeField] private int Health = 10;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Target").transform;
-
         
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (targetReached == false) 
-        {
-            transform.Translate(Vector3.up * vertSpeed);
-            transform.Translate(Vector3.forward * speed);
-        }
-        else
-        {
-            transform.Translate(Vector3.forward * attackSpeed);
-        }
+        transform.Translate(Vector3.up * vertSpeed);
+        transform.Translate(Vector3.forward * speed);
 
-        
 
-        if (transform.position.z < 0 && targetReached == false)
+
+        if (transform.position.z < 0)
         {
-            transform.LookAt(player.position);
-            targetReached = true;
+            spawnDebris();
+            Destroy(this.gameObject);
         }
+    }
+
+    void spawnDebris()
+    {
+        Instantiate(debris, transform.position, Quaternion.identity);
+        Instantiate(debris, transform.position, Quaternion.identity);
+        Instantiate(debris, transform.position, Quaternion.identity);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-       // Destroy(gameObject);
+        Health--;
+        
+        if (Health <= 0)
+        {
+            spawnDebris();
+            Destroy(gameObject);
+        }
     }
 }

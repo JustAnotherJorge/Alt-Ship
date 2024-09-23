@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ShipControl : MonoBehaviour
 {
+    [SerializeField] private bool useMousePo;
+
     [SerializeField] private Vector3 shipPostion;
     [SerializeField] private Vector3 StartPosition;
 
@@ -29,20 +31,32 @@ public class ShipControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (useMousePo == false)
+        {
+            YDistance = positionListener.GetComponent<positionListener>().Y;
+
+            XDistance = positionListener.GetComponent<positionListener>().X;
+
+            shipPostion = new Vector3(XDistance, YDistance, shipPostion.z) /*- StartPosition*/;
+            shipPostion -= StartPosition;
+            shipPostion = shipPostion / 2;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+                calabratePosition();
+        }
+        else
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hitInfo))
+            {
+                shipPostion = hitInfo.point;
+            }
+        }
+
         
-
-        YDistance = positionListener.GetComponent<positionListener>().Y;
-
-        XDistance = positionListener.GetComponent<positionListener>().X;
-
-        shipPostion = new Vector3 (XDistance, YDistance, shipPostion.z) /*- StartPosition*/;
-        shipPostion -= StartPosition;
-        shipPostion = shipPostion / 2;
-
         transform.position = Vector3.Lerp(transform.position, shipPostion, movmentSmoothing * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.Space))
-            calabratePosition();
+        
     }
 
 
