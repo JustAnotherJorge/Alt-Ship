@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShipControl : MonoBehaviour
 {
     [SerializeField] private bool useMousePo;
+    [SerializeField] protected Camera Cam;
 
     [SerializeField] private Vector3 shipPostion;
     [SerializeField] private Vector3 StartPosition;
@@ -46,7 +48,7 @@ public class ShipControl : MonoBehaviour
         }
         else
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hitInfo))
             {
                 shipPostion = hitInfo.point;
@@ -55,6 +57,10 @@ public class ShipControl : MonoBehaviour
 
         
         transform.position = Vector3.Lerp(transform.position, shipPostion, movmentSmoothing * Time.deltaTime);
+
+        Vector3 dir = Cam.transform.position - transform.position;
+        Quaternion rot = Quaternion.LookRotation(-dir);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rot, 10 * Time.deltaTime);
 
         
     }

@@ -39,7 +39,7 @@ public class shoot : MonoBehaviour
     IEnumerator shootBullet()
     {
         hasShot = true;
-        Instantiate(bullet, transform.position, bullet.transform.rotation);
+        Instantiate(bullet, transform.position, Quaternion.Euler(transform.eulerAngles.x + 90, transform.eulerAngles.y, transform.eulerAngles.z));
         inputController.SendSerialMessage("n");
         yield return new WaitForSecondsRealtime(shootRate);
         inputController.SendSerialMessage("f");
